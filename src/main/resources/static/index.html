@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Setlist Editor
+        </title>
+        <link rel="stylesheet" type="text/css" href="./index.css"/>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    </head>
+    <body>
+        <div id="title">
+            <h1>{{ message }}</h2>
+            <h3>setlist : {{ setlistName }}</h2>
+        </div>
+        <div id="tbl">
+            <table>
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th v-for="(header, index) in headers" v-bind:key="index">
+                        {{header}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(tune, index) in tunes" v-bind:key="tune.ID">
+                        <th>{{index + 1}}</th>
+                        <td>{{tune.Name}}</td>
+                        <td>{{tune.ID}}</td>
+                        <td>{{tune.Time}}</td>
+                        <td>{{tune.Ref}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script type="text/javascript" src="./data.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+</html>
