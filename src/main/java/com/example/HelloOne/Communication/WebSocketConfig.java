@@ -1,4 +1,4 @@
-package com.example.HelloOne;
+package com.example.HelloOne.Communication;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

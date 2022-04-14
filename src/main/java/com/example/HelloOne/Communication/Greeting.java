@@ -1,4 +1,4 @@
-package com.example.HelloOne;
+package com.example.HelloOne.Communication;
 
 public class Greeting {
     private String content;

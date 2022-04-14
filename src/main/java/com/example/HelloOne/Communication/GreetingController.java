@@ -1,4 +1,4 @@
-package com.example.HelloOne;
+package com.example.HelloOne.Communication;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
