@@ -15,12 +15,7 @@ var Setlists = [
 ];
 
 var tunes = [
-    {
-        name: "no heros",
-        id: 100,
-        time: 180,
-        ref: "None"
-    }
+    
 ];
 
 var stompClient = null;
@@ -30,9 +25,6 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings', function (greeting) {
-            console.log(`this is umm ${greeting}`);
-        });
         stompClient.subscribe('/topic/SetLists', function (_setlists) {
             console.log(`setlist is coming!! ${_setlists}`);
             let obj = JSON.parse(_setlists.body);
@@ -51,7 +43,12 @@ function connect() {
             });
             console.log(`tunes ${JSON.stringify(_tunes)}`);
             console.log(`result of tunes ${tunes}`);
-            
+        });
+        stompClient.subscribe('/topic/setSetList', function (ret) {
+            console.log(`finished put setList ${ret.body}`);
+        });
+        stompClient.subscribe('/topic/setTunes', function (ret) {
+            console.log(`finished put tunes ${ret.body}`);
         });
         reqSetList();
         reqTune();
@@ -78,9 +75,10 @@ function reqTune()
     stompClient.send("/app/getTunes", {}, "{}");
 }
 
-function sendName() {
-    console.log(`sending hello...`);
-    stompClient.send("/app/hello", {}, JSON.stringify({'name': "whoa"}));
+function PutSetList()
+{
+    //stompClient.send("/app/setSetList", {}, JSON.stringify(Setlists[0]));
+    stompClient.send("/app/setTunes", {}, JSON.stringify(tunes));
 }
 
 function Init() {

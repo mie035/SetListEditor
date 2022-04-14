@@ -17,3 +17,29 @@ var tbl = new Vue({
     headers: headers
   }
 })
+
+var btnTblAdd = new Vue({
+  el: '#btnTblAddDelete',
+  methods:{
+    onAddTbl:function(e)
+    {
+      console.log(`add data...`);
+      tunes.push({
+        name:"New",
+        id:-1,
+        time:60,
+        ref:"None",
+      });
+    },
+    onDeleteTbl:function(e)
+    {
+      console.log(`delete data...`);
+      tunes.pop();
+    },
+    onApplyTbl:function(e)
+    {
+      console.log(`apply data...`);
+      PutSetList();
+    },
+  }
+})
