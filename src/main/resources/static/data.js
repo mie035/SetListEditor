@@ -63,18 +63,6 @@ function sendName() {
 }
 
 function Init() {
-    // console.log(`init socket : ws://${location.hostname}:${location.port}/echo`);
-    // // WebSocket 接続を作成
-    // socket = new WebSocket(`ws://${location.hostname}:${location.port}/echo`);
-
-    // socket.onmessage = function(receive) {
-    //     console.log(`started websocket`);
-    // };
-
-    // socket.onopen = function() {
-    //     socket.send('Hello WebSocket');
-    // }
-    // return socket;
     connect();
 }
 
