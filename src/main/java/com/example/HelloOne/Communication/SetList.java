@@ -35,4 +35,15 @@ public class SetList {
     {
         FilePathList = filePathList;
     }
+    public void addFilePath(String filePath)
+    {
+        FilePathList.add(filePath);
+    }
+    public void removeFilePath(String filePath)
+    {
+        if(FilePathList.contains(filePath))
+        {
+            FilePathList.remove(filePath);
+        }
+    }
 }
