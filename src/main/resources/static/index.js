@@ -5,7 +5,7 @@ var app = new Vue({
   el: '#title',
   data: {
     message: 'Setlist Editor',
-    setlistName:setlist.Name,
+    setlistName:setlist.name,
   }
 })
 

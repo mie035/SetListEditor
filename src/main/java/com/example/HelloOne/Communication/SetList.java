@@ -6,12 +6,12 @@ import java.util.Collections;
 public class SetList {
     private int Id;
     private String Name;
-    private List<String> FilePathList;
+    private List<Integer> TunesIds;
 
-    public SetList(String name, int id, List<String> filePathList) {
+    public SetList(String name, int id, List<Integer> tunePathList) {
         Name = name;
         Id = id;
-        FilePathList = filePathList;
+        TunesIds = tunePathList;
     }
     public int getId() {
         return Id;
@@ -26,24 +26,24 @@ public class SetList {
      * return file refered list.this is unmodifiableList object.
      * @return
      */
-    public List<String> getFIlePathList()
+    public List<Integer> getTuneIds()
     {
-        final List<String> lst = Collections.unmodifiableList(FilePathList);
+        final List<Integer> lst = Collections.unmodifiableList(TunesIds);
         return lst;
     }
-    public void setFilePathList(List<String> filePathList)
+    public void setTuneIds(List<Integer> tuneIdList)
     {
-        FilePathList = filePathList;
+        TunesIds = tuneIdList;
     }
-    public void addFilePath(String filePath)
+    public void addFilePath(Integer tuneId)
     {
-        FilePathList.add(filePath);
+        TunesIds.add(tuneId);
     }
-    public void removeFilePath(String filePath)
+    public void removeFilePath(Integer tuneId)
     {
-        if(FilePathList.contains(filePath))
+        if(TunesIds.contains(tuneId))
         {
-            FilePathList.remove(filePath);
+            TunesIds.remove(tuneId);
         }
     }
 }

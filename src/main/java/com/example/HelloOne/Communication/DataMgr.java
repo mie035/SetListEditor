@@ -39,13 +39,13 @@ public class DataMgr {
 
     private static void CreatePsuedoData()
     {
-        SetList s1 = new SetList("no beer one", 1001, new ArrayList<String>(Arrays.asList("None")));
-        SetList s2 = new SetList("no beer Two", 1002, new ArrayList<String>(Arrays.asList("None")));
+        SetList s1 = new SetList("no beer one", 1001, new ArrayList<Integer>(Arrays.asList(101)));
+        SetList s2 = new SetList("no beer Two", 1002, new ArrayList<Integer>(Arrays.asList(0)));
         m_SetLists.add(s1);
         m_SetLists.add(s2);
-        Tune t1 = new Tune(101, "make it now", 120, "None");
-        Tune t2 = new Tune(101, "good boy and bad boy", 120, "wow.jp/www.mp3");
-        Tune t3 = new Tune(101, "none og above", 120, "xxx.com/xxx.mp3");
+        Tune t1 = new Tune(103, "make it now", 120, "None");
+        Tune t2 = new Tune(104, "good boy and bad boy", 120, "wow.jp/www.mp3");
+        Tune t3 = new Tune(105, "none og above", 120, "xxx.com/xxx.mp3");
         m_Tunes.add(t1);
         m_Tunes.add(t2);
         m_Tunes.add(t3);

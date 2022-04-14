@@ -23,12 +23,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(tune, index) in tunes" v-bind:key="tune.ID">
+                    <tr v-for="(tune, index) in tunes" v-bind:key="tune.id">
                         <th>{{index + 1}}</th>
-                        <td><input v-model='tune.Name'></td>
-                        <td>{{tune.ID}}</td>
-                        <td><input v-model='tune.Time'></td>
-                        <td><input v-model='tune.Ref'></td>
+                        <td><input v-model='tune.name'></td>
+                        <td>{{tune.id}}</td>
+                        <td><input v-model='tune.time'></td>
+                        <td><input v-model='tune.ref'></td>
                     </tr>
                 </tbody>
             </table>

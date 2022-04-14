@@ -8,30 +8,18 @@ var headers = [
 
 var Setlists = [
     {
-        Name: "2022/08/28 no beer no life",
-        ID: 001,
-        TuneIds: [100, 101, 102]
+        name: "2022/08/28 no beer no life",
+        id: 001,
+        tuneIds: [100, 101, 102]
     }
 ];
 
 var tunes = [
     {
-        Name: "no heros",
-        ID: 100,
-        Time: 180,
-        Ref: "None"
-    },
-    {
-        Name: "cool dogs",
-        ID: 101,
-        Time: 60,
-        Ref: "None"
-    },
-    {
-        Name: "get it up",
-        ID: 102,
-        Time: 120,
-        Ref: "None"
+        name: "no heros",
+        id: 100,
+        time: 180,
+        ref: "None"
     }
 ];
 
@@ -45,11 +33,25 @@ function connect() {
         stompClient.subscribe('/topic/greetings', function (greeting) {
             console.log(`this is umm ${greeting}`);
         });
-        stompClient.subscribe('/topic/SetLists', function (setlists) {
-            console.log(`setlist is coming!! ${setlists}`);
+        stompClient.subscribe('/topic/SetLists', function (_setlists) {
+            console.log(`setlist is coming!! ${_setlists}`);
+            let obj = JSON.parse(_setlists.body);
+            Object.keys(obj).forEach((key)=>{
+                Setlists.push(obj[key]);
+                console.log(`add setlist ${JSON.stringify(obj[key])}`);
+            });
+
         });
-        stompClient.subscribe('/topic/Tunes', function (tunes) {
-            console.log(`setlist is coming!! ${tunes}`);
+        stompClient.subscribe('/topic/Tunes', function (_tunes) {
+            console.log(`setlist is coming!! ${_tunes}`);
+            let obj = JSON.parse(_tunes.body);
+            Object.keys(obj).forEach((key)=>{
+                tunes.push(obj[key]);
+                console.log(`add tune ${JSON.stringify(obj[key])}`);
+            });
+            console.log(`tunes ${JSON.stringify(_tunes)}`);
+            console.log(`result of tunes ${tunes}`);
+            
         });
         reqSetList();
         reqTune();
