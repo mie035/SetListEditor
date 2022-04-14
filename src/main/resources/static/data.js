@@ -45,7 +45,10 @@ function connect() {
         stompClient.subscribe('/topic/greetings', function (greeting) {
             console.log(`this is umm ${greeting}`);
         });
-        sendName();
+        stompClient.subscribe('/topic/SetLists', function (setlists) {
+            console.log(`setlist is coming!! ${setlists}`);
+        });
+        reqSetList();
     });
 }
 
@@ -55,6 +58,12 @@ function disconnect() {
     }
     setConnected(false);
     console.log("Disconnected");
+}
+
+function reqSetList()
+{
+    console.log(`req setlists...`);
+    stompClient.send("/app/getSetlist", {}, JSON.stringify({'name': "whoa"}));
 }
 
 function sendName() {

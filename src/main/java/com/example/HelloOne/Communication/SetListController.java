@@ -1,5 +1,6 @@
 package com.example.HelloOne.Communication;
 
+import java.util.List;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,9 @@ import org.springframework.web.util.HtmlUtils;
 public class SetListController {
     @MessageMapping("/getSetlist")
     @SendTo("/topic/SetLists")
-    public Greeting greeting(SetList message) throws Exception {
+    public List<SetList> setlist(Object m) throws Exception {
       Thread.sleep(1000); // simulated delay
-      return new Greeting("Hello babe, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+      System.out.println(String.format("i'm telling setlist...%s", HtmlUtils.htmlEscape(m.toString())));
+      return DataMgr.getSetLists();
     }   
 }
