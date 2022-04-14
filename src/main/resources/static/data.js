@@ -48,7 +48,11 @@ function connect() {
         stompClient.subscribe('/topic/SetLists', function (setlists) {
             console.log(`setlist is coming!! ${setlists}`);
         });
+        stompClient.subscribe('/topic/Tunes', function (tunes) {
+            console.log(`setlist is coming!! ${tunes}`);
+        });
         reqSetList();
+        reqTune();
     });
 }
 
@@ -63,7 +67,13 @@ function disconnect() {
 function reqSetList()
 {
     console.log(`req setlists...`);
-    stompClient.send("/app/getSetlist", {}, JSON.stringify({'name': "whoa"}));
+    stompClient.send("/app/getSetlists", {}, "{}");
+}
+
+function reqTune()
+{
+    console.log(`req tune...`);
+    stompClient.send("/app/getTunes", {}, "{}");
 }
 
 function sendName() {
