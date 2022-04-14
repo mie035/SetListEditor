@@ -8,9 +8,6 @@ public class Tune {
     private int Time;
     private String Ref;
 
-    public Tune() {
-    }
-
     public Tune(int id, String name, int time, String ref) {
         this.Id = id;
         this.Name = name;
