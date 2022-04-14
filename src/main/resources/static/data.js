@@ -1,12 +1,12 @@
 // テーブルのヘッダー配列
-const headers = [
+var headers = [
     'Name',
     'ID',
     'Time(s)',
     'Ref',
 ];
 
-const Setlists = [
+var Setlists = [
     {
         Name: "2022/08/28 no beer no life",
         ID: 001,
@@ -14,7 +14,7 @@ const Setlists = [
     }
 ];
 
-const tunes = [
+var tunes = [
     {
         Name: "no heros",
         ID: 100,
@@ -34,6 +34,49 @@ const tunes = [
         Ref: "None"
     }
 ];
+
+var stompClient = null;
+
+function connect() {
+    var socket = new SockJS('/gs-guide-websocket');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/greetings', function (greeting) {
+            console.log(`this is umm ${greeting}`);
+        });
+        sendName();
+    });
+}
+
+function disconnect() {
+    if (stompClient !== null) {
+        stompClient.disconnect();
+    }
+    setConnected(false);
+    console.log("Disconnected");
+}
+
+function sendName() {
+    console.log(`sending hello...`);
+    stompClient.send("/app/hello", {}, JSON.stringify({'name': "whoa"}));
+}
+
+function Init() {
+    // console.log(`init socket : ws://${location.hostname}:${location.port}/echo`);
+    // // WebSocket 接続を作成
+    // socket = new WebSocket(`ws://${location.hostname}:${location.port}/echo`);
+
+    // socket.onmessage = function(receive) {
+    //     console.log(`started websocket`);
+    // };
+
+    // socket.onopen = function() {
+    //     socket.send('Hello WebSocket');
+    // }
+    // return socket;
+    connect();
+}
 
 function GetCurrentSetlist()
 {

@@ -25,15 +25,17 @@
                 <tbody>
                     <tr v-for="(tune, index) in tunes" v-bind:key="tune.ID">
                         <th>{{index + 1}}</th>
-                        <td>{{tune.Name}}</td>
+                        <td><input v-model='tune.Name'></td>
                         <td>{{tune.ID}}</td>
-                        <td>{{tune.Time}}</td>
-                        <td>{{tune.Ref}}</td>
+                        <td><input v-model='tune.Time'></td>
+                        <td><input v-model='tune.Ref'></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </body>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script type="text/javascript" src="./data.js"></script>
     <script type="text/javascript" src="./index.js"></script>
 </html>

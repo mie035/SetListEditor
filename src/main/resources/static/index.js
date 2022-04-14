@@ -1,4 +1,5 @@
 // data.js is refered
+Init();
 var setlist = GetCurrentSetlist();
 var app = new Vue({
   el: '#title',
