@@ -3,6 +3,7 @@ package com.example.HelloOne.Communication;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.Collections;
 
 public class DataMgr {
@@ -50,7 +51,7 @@ public class DataMgr {
     {
         if(tune.getId() == Tune.UNKNOWN_ID)
         {
-            //tune.setId();
+            tune.setId(UUID.randomUUID().toString());
         }
         m_Tunes.add(tune);
     }
