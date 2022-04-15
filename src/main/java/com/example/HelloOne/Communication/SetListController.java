@@ -24,13 +24,19 @@ public class SetListController {
     @SendTo("/topic/setSetList")
     public Boolean setSetList(SetList setList)throws Exception {
       System.out.println(String.format("i'm setting setList...%s", HtmlUtils.htmlEscape(setList.toString())));
+      
       return true;
     }
     @MessageMapping("setTunes")
     @SendTo("/topic/setTunes")
     public Boolean setTunes(List<Tune> tunes)throws Exception {
       System.out.println(String.format("i'm setting setList...%s", HtmlUtils.htmlEscape(tunes.toString())));
-      DataMgr.setTunes(tunes);
+      for (Tune t : tunes) {
+        if(DataMgr.IsExsitTune(t.getId()))
+        {
+          DataMgr.setTunes(tunes);
+        }
+      }
       return true;
     }
 }

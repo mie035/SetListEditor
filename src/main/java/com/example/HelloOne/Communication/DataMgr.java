@@ -24,6 +24,16 @@ public class DataMgr {
         final List<SetList> lst = Collections.unmodifiableList(m_SetLists);
         return lst;
     }
+    public static boolean IsExsitTune(String id)
+    {
+        for (Tune t : m_Tunes) {
+            if(t.getId() == t.getId())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     public static void setSetLists(List<SetList> setLists)
     {
         m_SetLists = setLists;
@@ -36,6 +46,14 @@ public class DataMgr {
     {
         m_Tunes = tunes;
     }
+    public static void addTune(Tune tune)
+    {
+        if(tune.getId() == Tune.UNKNOWN_ID)
+        {
+            //tune.setId();
+        }
+        m_Tunes.add(tune);
+    }
 
     private static void CreatePsuedoData()
     {
@@ -43,9 +61,9 @@ public class DataMgr {
         SetList s2 = new SetList("2022/10/11 True North Fest", 1002, new ArrayList<Integer>(Arrays.asList(103, 104,105)));
         m_SetLists.add(s1);
         m_SetLists.add(s2);
-        Tune t1 = new Tune(103, "make it now", 120, "None");
-        Tune t2 = new Tune(104, "good boy and bad boy", 120, "wow.jp/www.mp3");
-        Tune t3 = new Tune(105, "none og above", 120, "xxx.com/xxx.mp3");
+        Tune t1 = new Tune("103", "make it now", 120, "None");
+        Tune t2 = new Tune("104", "good boy and bad boy", 120, "wow.jp/www.mp3");
+        Tune t3 = new Tune("105", "none og above", 120, "xxx.com/xxx.mp3");
         m_Tunes.add(t1);
         m_Tunes.add(t2);
         m_Tunes.add(t3);
