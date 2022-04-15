@@ -6,9 +6,9 @@ import java.util.Collections;
 public class SetList {
     private int Id;
     private String Name;
-    private List<Integer> TunesIds;
+    private List<String> TunesIds;
 
-    public SetList(String name, int id, List<Integer> tunePathList) {
+    public SetList(String name, int id, List<String> tunePathList) {
         Name = name;
         Id = id;
         TunesIds = tunePathList;
@@ -26,20 +26,20 @@ public class SetList {
      * return file refered list.this is unmodifiableList object.
      * @return
      */
-    public List<Integer> getTuneIds()
+    public List<String> getTuneIds()
     {
-        final List<Integer> lst = Collections.unmodifiableList(TunesIds);
+        final List<String> lst = Collections.unmodifiableList(TunesIds);
         return lst;
     }
-    public void setTuneIds(List<Integer> tuneIdList)
+    public void setTuneIds(List<String> tuneIdList)
     {
         TunesIds = tuneIdList;
     }
-    public void addFilePath(Integer tuneId)
+    public void addFilePath(String tuneId)
     {
         TunesIds.add(tuneId);
     }
-    public void removeFilePath(Integer tuneId)
+    public void removeFilePath(String tuneId)
     {
         if(TunesIds.contains(tuneId))
         {
