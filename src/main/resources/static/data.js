@@ -36,7 +36,7 @@ function connect() {
             app.$set(opts, 'selected', Setlists[0].name);
             console.log(`qoqoqo`);
             Object.keys(opts.sls).forEach((i=>{
-                if(opts.sls[i].name == opts.selected)
+                if(opts.sls[i].name === opts.selected)
                 {
                   console.log(`qoqoqo${opts.sls[i].name}`);
                   let ret = GetTunesData(opts.sls[i].tuneIds);
