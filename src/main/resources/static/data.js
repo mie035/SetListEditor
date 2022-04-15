@@ -7,11 +7,11 @@ var headers = [
 ];
 
 var Setlists = [
-    {
-        name: "2022/08/28 no beer no life",
-        id: 001,
-        tuneIds: [100, 101, 102]
-    }
+    // {
+    //     name: "2022/08/28 no beer no life",
+    //     id: 001,
+    //     tuneIds: [100, 101, 102]
+    // }
 ];
 
 var tunes = [
@@ -32,7 +32,17 @@ function connect() {
                 Setlists.push(obj[key]);
                 console.log(`add setlist ${JSON.stringify(obj[key])}`);
             });
-
+            app.$set(app, 'setlistName', Setlists[0].name);
+            app.$set(opts, 'selected', Setlists[0].name);
+            console.log(`qoqoqo`);
+            Object.keys(opts.sls).forEach((i=>{
+                if(opts.sls[i].name == opts.selected)
+                {
+                  console.log(`qoqoqo${opts.sls[i].name}`);
+                  let ret = GetTunesData(opts.sls[i].tuneIds);
+                  tbl.$set(tbl, 'tunes', ret);
+                }
+              }));
         });
         stompClient.subscribe('/topic/Tunes', function (_tunes) {
             console.log(`setlist is coming!! ${_tunes}`);
@@ -43,6 +53,8 @@ function connect() {
             });
             console.log(`tunes ${JSON.stringify(_tunes)}`);
             console.log(`result of tunes ${tunes}`);
+            reqSetList();
+
         });
         stompClient.subscribe('/topic/setSetList', function (ret) {
             console.log(`finished put setList ${ret.body}`);
@@ -50,7 +62,6 @@ function connect() {
         stompClient.subscribe('/topic/setTunes', function (ret) {
             console.log(`finished put tunes ${ret.body}`);
         });
-        reqSetList();
         reqTune();
     });
 }
@@ -85,7 +96,18 @@ function Init() {
     connect();
 }
 
-function GetCurrentSetlist()
+function GetTunesData(tunesIds)
 {
-    return Setlists[0];
+    let ret = [];
+    Object.keys(tunesIds).forEach((kId)=>{
+        Object.keys(tunes).forEach((kTunes)=>{
+            console.log(`kId : ${tunesIds[kId]}, kTunes : ${tunes[kTunes].id}`);
+            if(tunesIds[kId] === tunes[kTunes].id)
+            {
+                ret.push(tunes[kTunes]);
+            }
+        });
+    });
+    console.log(`Get Current Tunes : ${JSON.stringify(ret)}`);
+    return ret;
 }

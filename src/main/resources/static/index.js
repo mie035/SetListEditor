@@ -1,14 +1,31 @@
 // data.js is refered
 Init();
-var setlist = GetCurrentSetlist();
 var app = new Vue({
   el: '#title',
   data: {
     message: 'Setlist Editor',
-    setlistName:setlist.name,
+    setlistName:"",
   }
 })
-
+var opts = new Vue({
+  el: '#opts',
+  data: {
+    selected: '',
+    sls:Setlists,
+  },
+  methods:{
+    onSelectedChanged:function(e)
+    {
+      Object.keys(opts.sls).forEach((i=>{
+        if(opts.sls[i].name == opts.selected)
+        {
+          let ret = GetTunesData(opts.sls[i].tuneIds);
+          tbl.$set(tbl, 'tunes', ret);
+        }
+      }));
+    }
+  }
+})
 // Vueインスタンス
 var tbl = new Vue({
   el: '#tbl',
