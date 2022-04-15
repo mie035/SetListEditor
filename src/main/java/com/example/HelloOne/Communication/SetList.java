@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Collections;
 
 public class SetList {
-    private int Id;
+    private String Id;
     private String Name;
     private List<String> TunesIds;
 
-    public SetList(String name, int id, List<String> tunePathList) {
+    public SetList(String name, String id, List<String> tunePathList) {
         Name = name;
         Id = id;
         TunesIds = tunePathList;
     }
-    public int getId() {
+    public String getId() {
         return Id;
     }
     public String getName() {

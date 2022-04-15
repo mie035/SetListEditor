@@ -58,8 +58,8 @@ public class DataMgr {
 
     private static void CreatePsuedoData()
     {
-        SetList s1 = new SetList("2022/08/28 no beer one", 1001, new ArrayList<String>(Arrays.asList("103","105")));
-        SetList s2 = new SetList("2022/10/11 True North Fest", 1002, new ArrayList<String>(Arrays.asList("103", "104","105")));
+        SetList s1 = new SetList("2022/08/28 no beer one", "1001", new ArrayList<String>(Arrays.asList("103","105")));
+        SetList s2 = new SetList("2022/10/11 True North Fest", "1002", new ArrayList<String>(Arrays.asList("103", "104","105")));
         m_SetLists.add(s1);
         m_SetLists.add(s2);
         Tune t1 = new Tune("103", "make it now", 120, "None");
