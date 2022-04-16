@@ -44,6 +44,13 @@
             </table>
         </div>
         <div id="btnTblAddDelete">
+            <select v-on:change="onSelectedChanged" v-model="selected">
+                <option disabled value="">Please select one</option>
+                <option v-for="tu in filterdTunes" v-bind:value="tu.id">
+                    {{ tu.name }}
+                </option>
+                <option>New</option>
+            </select>
             <button v-on:click="onAddTbl">Add</button>
             <button v-on:click="onDeleteTbl">Delete</button>
             <button v-on:click="onApplyTbl">Apply</button>

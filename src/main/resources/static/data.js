@@ -96,7 +96,6 @@ function PutSetList()
 function Init() {
     connect();
 }
-
 function GetTunesData(tunesIds)
 {
     let ret = [];

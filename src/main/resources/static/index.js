@@ -48,14 +48,35 @@ var tbl = new Vue({
 
 var btnTblAdd = new Vue({
   el: '#btnTblAddDelete',
+  data:{
+    selected:"",
+    selectedData:"",
+    tunes:tunes,
+  },
   methods:{
+    onSelectedChanged:function(e)
+    {
+      console.log(`selected : ${btnTblAdd.selected}`);
+      if(btnTblAdd.selected === "New")
+      {
+        let newTune = GetNewTune();
+        console.log(`new setlist : ${JSON.stringify(newTune)}`);
+        btnTblAdd.tunes.push(newTune);
+        btnTblAdd.$set(btnTblAdd, 'selected', newTune.id);
+        btnTblAdd.$set(btnTblAdd, 'selectedData', newTune);
+      }
+    },
     onAddTbl:function(e)
     {
-      console.log(`add data...`);
-      let newTune = GetNewTune();
-      opts.selectedData.tuneIds.push(newTune.id);
-      tunes.push(newTune);
-      tbl.tunes.push(newTune);
+      Object.keys(btnTblAdd.tunes).forEach((i=>{
+        if(btnTblAdd.tunes[i].id === btnTblAdd.selected)
+        {
+          let ret = GetTunesData([btnTblAdd.selected]);
+          tbl.tunes.push(ret[0]);
+          opts.selectedData.tuneIds.push(ret[0].id);
+          console.log(`update tables ${JSON.stringify(opts.selectedData.tuneIds)}`);
+        }
+      }));
     },
     onDeleteTbl:function(e)
     {
@@ -70,5 +91,22 @@ var btnTblAdd = new Vue({
       console.log(`apply data...`);
       PutSetList();
     },
+  },
+  computed:{
+    filterdTunes:function(){
+      console.log(`filterd!!! ${opts.selected}`);
+      let ret = [];
+      if(opts.selected === "")
+      {
+        return ret;
+      }
+      Object.keys(this.tunes).forEach(i=>{
+        if(!opts.selectedData.tuneIds.includes(this.tunes[i].id))
+        {
+          ret.push(this.tunes[i]);
+        }
+      });
+      return ret;
+    }
   }
 })
