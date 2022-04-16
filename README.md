@@ -8,6 +8,6 @@ this project generated at first by https://start.spring.io/
 ## Dev Enviroment
 Java 11
 Spring Boot 2.6.6
-Maven 4.0.0
+Maven 3.8.5
 Vue.js 2.6.14
 VS Code
