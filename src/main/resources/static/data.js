@@ -1,3 +1,4 @@
+const UNDIFINED_ID = "unknown";
 // テーブルのヘッダー配列
 var headers = [
     'Name',
@@ -33,10 +34,10 @@ function connect() {
                 console.log(`add setlist ${JSON.stringify(obj[key])}`);
             });
             app.$set(app, 'setlistName', Setlists[0].name);
-            app.$set(opts, 'selected', Setlists[0].name);
-            console.log(`qoqoqo`);
+            app.$set(opts, 'selected', Setlists[0].id);
+            app.$set(opts, 'selectedData', Setlists[0]);
             Object.keys(opts.sls).forEach((i=>{
-                if(opts.sls[i].name === opts.selected)
+                if(opts.sls[i].id === opts.selected)
                 {
                   console.log(`qoqoqo${opts.sls[i].name}`);
                   let ret = GetTunesData(opts.sls[i].tuneIds);
@@ -110,4 +111,19 @@ function GetTunesData(tunesIds)
     });
     console.log(`Get Current Tunes : ${JSON.stringify(ret)}`);
     return ret;
+}
+function GetNewSetList() {
+    return {
+        name: "New XXX",
+        id: `UNDIFINED_ID_${UUID.generate()}`,
+        tuneIds: [""]
+    };
+}
+function GetNewTune() {
+    return {
+        name: "New XXX",
+        id: `UNDIFINED_ID_${UUID.generate()}`,
+        time: 60,
+        ref: "None",
+    };
 }

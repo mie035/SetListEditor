@@ -11,14 +11,25 @@ var opts = new Vue({
   el: '#opts',
   data: {
     selected: '',
+    selectedData:"aaaaa",
     sls:Setlists,
   },
   methods:{
     onSelectedChanged:function(e)
     {
+      console.log(`selected : ${opts.selected}`);
+      if(opts.selected === "New")
+      {
+        let newSl = GetNewSetList();
+        console.log(`new setlist : ${JSON.stringify(newSl)}`);
+        opts.sls.push(newSl);
+        opts.$set(opts, 'selected', newSl.id);
+        opts.$set(opts, 'selectedData', newSl);
+      }
       Object.keys(opts.sls).forEach((i=>{
-        if(opts.sls[i].name == opts.selected)
+        if(opts.sls[i].id === opts.selected)
         {
+          console.log(`ettoo ${JSON.stringify(opts.sls[i].tuneIds)}`);
           let ret = GetTunesData(opts.sls[i].tuneIds);
           tbl.$set(tbl, 'tunes', ret);
         }
@@ -41,17 +52,18 @@ var btnTblAdd = new Vue({
     onAddTbl:function(e)
     {
       console.log(`add data...`);
-      tunes.push({
-        name:"New",
-        id:-1,
-        time:60,
-        ref:"None",
-      });
+      let newTune = GetNewTune();
+      opts.selectedData.tuneIds.push(newTune.id);
+      tunes.push(newTune);
+      tbl.tunes.push(newTune);
     },
     onDeleteTbl:function(e)
     {
       console.log(`delete data...`);
-      tunes.pop();
+      let popped = tbl.tunes.pop();
+      let popped2 = opts.selectedData.tuneIds.pop();
+      console.log(`popped : ${JSON.stringify(popped)}`);
+      console.log(`popped : ${JSON.stringify(popped2)}`);
     },
     onApplyTbl:function(e)
     {

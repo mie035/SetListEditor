@@ -10,14 +10,16 @@
     <body>
         <div id="title">
             <h1>{{ message }}</h2>
-            <h3>setlist : {{ setlistName }}</h2>
         </div>
         <div id="opts">
+            <label>Setlist : </label>
+            <input v-model='selectedData.name'>
             <select v-on:change="onSelectedChanged" v-model="selected">
                 <option disabled value="">Please select one</option>
-                <option v-for="sl in sls" v-bind:value="sl.name">
+                <option v-for="sl in sls" v-bind:value="sl.id">
                     {{ sl.name }}
                 </option>
+                <option>New</option>
               </select>
         </div>
         <div id="tbl">
@@ -49,6 +51,7 @@
     </body>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuidjs@4.2.11/src/uuid.min.js"></script>
     <script type="text/javascript" src="./data.js"></script>
     <script type="text/javascript" src="./index.js"></script>
 </html>
