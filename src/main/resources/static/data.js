@@ -121,7 +121,7 @@ function GetNewSetList() {
 }
 function GetNewTune() {
     return {
-        name: "New XXX",
+        name: "New Tune",
         id: `UNDIFINED_ID_${UUID.generate()}`,
         time: 60,
         ref: "None",
