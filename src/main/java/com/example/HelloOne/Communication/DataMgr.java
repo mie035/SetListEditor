@@ -1,5 +1,6 @@
 package com.example.HelloOne.Communication;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +39,17 @@ public class DataMgr {
     public static void setSetLists(List<SetList> setLists)
     {
         m_SetLists = setLists;
+    }
+    public static void setSetList(SetList setList)
+    {
+        for (int i = 0; i < m_SetLists.size(); i++) {
+            if(m_SetLists.get(i).getId().equals(setList.getId()))
+            {
+                m_SetLists.set(i, setList);
+                return;
+            }
+        }
+        m_SetLists.add(setList);
     }
     public static List<Tune> getTunes()
     {

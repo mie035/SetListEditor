@@ -23,8 +23,9 @@ public class SetListController {
     @MessageMapping("setSetList")
     @SendTo("/topic/setSetList")
     public Boolean setSetList(SetList setList)throws Exception {
-      System.out.println(String.format("i'm setting setList...%s", HtmlUtils.htmlEscape(setList.toString())));
-      
+      System.out.println("i'm setting setList...");
+      System.out.println(String.format("sl name is...%s", setList.getName()));
+      DataMgr.setSetList(setList);
       return true;
     }
     @MessageMapping("setTunes")
