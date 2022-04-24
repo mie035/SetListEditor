@@ -90,7 +90,14 @@ var btnTblAdd = new Vue({
     onApplyTbl:function(e)
     {
       console.log(`apply data...`);
-      PutSetList();
+      Object.keys(Setlists).forEach((i=>{
+        console.log(`serching s.name : ${JSON.stringify(Setlists[i].id)}, selected : ${opts.selected}`);
+        if(Setlists[i].id === opts.selected)
+        {
+          console.log(`applied !! idx : ${Setlists[i].name}`);
+          PutSetList(i);
+    }
+      }));
     },
   },
   computed:{

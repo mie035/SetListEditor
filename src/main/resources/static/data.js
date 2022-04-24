@@ -87,10 +87,11 @@ function reqTune()
     stompClient.send("/app/getTunes", {}, "{}");
 }
 
-function PutSetList()
+function PutSetList(targetIdx)
 {
-    //stompClient.send("/app/setSetList", {}, JSON.stringify(Setlists[0]));
-    stompClient.send("/app/setTunes", {}, JSON.stringify(tunes));
+    console.log(`put set list : ${JSON.stringify(Setlists[targetIdx])}`);
+    stompClient.send("/app/setSetList", {}, JSON.stringify(Setlists[targetIdx]));
+    //stompClient.send("/app/setTunes", {}, JSON.stringify(tunes));
 }
 
 function Init() {
