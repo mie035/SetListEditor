@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HelloOneApplication<HelloOne>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.HelloOne.HelloOneApplication",
+            "projectName": "HelloOne",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
