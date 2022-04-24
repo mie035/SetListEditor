@@ -32,6 +32,7 @@ var opts = new Vue({
           console.log(`ettoo ${JSON.stringify(opts.sls[i].tuneIds)}`);
           let ret = GetTunesData(opts.sls[i].tuneIds);
           tbl.$set(tbl, 'tunes', ret);
+          opts.$set(opts, 'selectedData', opts.sls[i]);
         }
       }));
     }
